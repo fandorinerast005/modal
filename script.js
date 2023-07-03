@@ -12,49 +12,81 @@
   var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   if (isMobile) {
-    var phoneIcon = document.createElement("div");
-    phoneIcon.style.width = "50px";
-    phoneIcon.style.height = "50px";
-    phoneIcon.style.borderRadius = "50%";
-    phoneIcon.style.backgroundColor = "white";
-    phoneIcon.style.position = "fixed";
-    phoneIcon.style.bottom = "20px";
-    phoneIcon.style.left = "20px";
-    phoneIcon.style.cursor = "pointer";
-    phoneIcon.style.zIndex = "9999";
+    var phoneIcon1 = document.createElement("div");
+    phoneIcon1.style.background = "url(https://www.example.png";
+    phoneIcon1.style.width = "50px";
+    phoneIcon1.style.height = "50px";
+    phoneIcon1.style.borderRadius = "50%";
+    phoneIcon1.style.backgroundColor = "white";
+    phoneIcon1.style.position = "fixed";
+    phoneIcon1.style.bottom = "20px";
+    phoneIcon1.style.left = "20px";
+    phoneIcon1.style.cursor = "pointer";
+    phoneIcon1.style.zIndex = "9999";
 
-    if (/Android/i.test(navigator.userAgent)) {
-      phoneIcon.style.background = "url(https://i.postimg.cc/Pf3Bf4Ct/phone-call.png) no-repeat center/cover";
-      phoneIcon.addEventListener("click", function() {
-        window.location.href = "tel:+79534384182";
-      });
-    } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-      phoneIcon.style.background = "url(https://i.postimg.cc/C1VmpNS8/telegram-logo-circle-icon-8778978978789.png) no-repeat center/cover";
-      phoneIcon.style.left = "50%";
-      phoneIcon.style.transform = "translateX(-25%)";
-      phoneIcon.addEventListener("click", function() {
-        window.open('https://t.me/ttula71?text=Привет!%20У%20меня%20вопрос%20по%20товару%20/%20услуге.', '_blank');
-      });
+    document.body.appendChild(phoneIcon1);
+
+    function callNumber() {
+      window.location.href = "tel:+79534384182";
     }
 
-    document.body.appendChild(phoneIcon);
+    phoneIcon1.addEventListener("click", callNumber);
 
-    var isJumping = false;
-    var jumpInterval;
+    var isJumping1 = false;
+    var jumpInterval1;
 
-    function jump() {
-      if (!isJumping) {
-        isJumping = true;
-        var initialBottom = parseInt(phoneIcon.style.bottom);
-        jumpInterval = setInterval(function() {
-          phoneIcon.style.bottom = parseInt(phoneIcon.style.bottom) + 10 + "px";
+    function jump1() {
+      if (!isJumping1) {
+        isJumping1 = true;
+        var initialBottom = parseInt(phoneIcon1.style.bottom);
+        jumpInterval1 = setInterval(function() {
+          phoneIcon1.style.bottom = parseInt(phoneIcon1.style.bottom) + 10 + "px";
           setTimeout(function() {
-            phoneIcon.style.bottom = initialBottom + "px";
-            isJumping = false;
+            phoneIcon1.style.bottom = initialBottom + "px";
+            isJumping1 = false;
           }, 300);
         }, 600);
       }
     }
 
-    phoneIcon.addEventListener("mouseover", jump);
+    phoneIcon1.addEventListener("mouseover", jump1);
+
+    var phoneIcon2 = document.createElement("div");
+    phoneIcon2.style.background = "url(https://www.example.png) no-repeat center/cover";
+    phoneIcon2.style.width = "50px";
+    phoneIcon2.style.height = "50px";
+    phoneIcon2.style.borderRadius = "50%";
+    phoneIcon2.style.backgroundColor = "white";
+    phoneIcon2.style.position = "fixed";
+    phoneIcon2.style.bottom = "20px";
+    phoneIcon2.style.left = "50%";
+    phoneIcon2.style.transform = "translateX(-25%)";
+    phoneIcon2.style.cursor = "pointer";
+    phoneIcon2.style.zIndex = "9999";
+    document.body.appendChild(phoneIcon2);
+
+    function openTelegram() {
+      window.open('https://t.me/...?text=Привет!%20У%20меня%20вопрос%20по%20товару%20/%20услуге.', '_blank');
+    }
+
+    phoneIcon2.addEventListener("click", openTelegram);
+
+    var isJumping2 = false;
+    var jumpInterval2;
+
+    function jump2() {
+      if (!isJumping2) {
+        isJumping2 = true;
+        var initialBottom = parseInt(phoneIcon2.style.bottom);
+        jumpInterval2 = setInterval(function() {
+          phoneIcon2.style.bottom = parseInt(phoneIcon2.style.bottom) + 10 + "px";
+          setTimeout(function() {
+            phoneIcon2.style.bottom = initialBottom + "px";
+            isJumping2 = false;
+          }, 300);
+        }, 600);
+      }
+    }
+
+    phoneIcon2.addEventListener("mouseover", jump2);
   }
