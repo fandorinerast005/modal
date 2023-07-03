@@ -66,7 +66,7 @@
     document.body.appendChild(phoneIcon2);
 
     function openTelegram() {
-      window.open('https://t.me/...?text=Привет!%20У%20меня%20вопрос%20по%20товару%20/%20услуге.', '_blank');
+      window.open('https://t.me/*****?text=Привет!%20У%20меня%20вопрос%20по%20*****.', '_blank');
     }
 
     phoneIcon2.addEventListener("click", openTelegram);
