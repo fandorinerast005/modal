@@ -2,7 +2,7 @@ const scrollButton = document.querySelector(".scroll-to-top");
 const navLinks = document.querySelectorAll("nav ul li a");
 const body = document.body;
 const sections = document.querySelectorAll("section:not(.header-section)");
-const title = document.querySelector("header h2");
+const title = document.querySelector("header h1");
 
 window.addEventListener("scroll", () => {
   if (window.pageYOffset > 200) {
