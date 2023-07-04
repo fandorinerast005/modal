@@ -1,92 +1,193 @@
-  var telegramLink = document.querySelector('.telegram-link');
-  var underlineOnHover = document.querySelector('.underline-on-hover');
+const scrollButton = document.querySelector(".scroll-to-top");
+const navLinks = document.querySelectorAll("nav ul li a");
+const body = document.body;
+const sections = document.querySelectorAll("section:not(.header-section)");
+const title = document.querySelector("header h1");
 
-  telegramLink.addEventListener('mouseover', function() {
-    underlineOnHover.style.transform = 'translateY(5px) scaleX(1)';
-  });
-
-  telegramLink.addEventListener('mouseout', function() {
-    underlineOnHover.style.transform = 'translateY(5px) scaleX(0)';
-  });
-
-  var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-  if (isMobile) {
-    var phoneIcon1 = document.createElement("div");
-    phoneIcon1.style.background = "url(https://www.example.png";
-    phoneIcon1.style.width = "50px";
-    phoneIcon1.style.height = "50px";
-    phoneIcon1.style.borderRadius = "50%";
-    phoneIcon1.style.backgroundColor = "white";
-    phoneIcon1.style.position = "fixed";
-    phoneIcon1.style.bottom = "20px";
-    phoneIcon1.style.left = "20px";
-    phoneIcon1.style.cursor = "pointer";
-    phoneIcon1.style.zIndex = "9999";
-
-    document.body.appendChild(phoneIcon1);
-
-    function callNumber() {
-      window.location.href = "tel:+79534384182";
-    }
-
-    phoneIcon1.addEventListener("click", callNumber);
-
-    var isJumping1 = false;
-    var jumpInterval1;
-
-    function jump1() {
-      if (!isJumping1) {
-        isJumping1 = true;
-        var initialBottom = parseInt(phoneIcon1.style.bottom);
-        jumpInterval1 = setInterval(function() {
-          phoneIcon1.style.bottom = parseInt(phoneIcon1.style.bottom) + 10 + "px";
-          setTimeout(function() {
-            phoneIcon1.style.bottom = initialBottom + "px";
-            isJumping1 = false;
-          }, 300);
-        }, 600);
-      }
-    }
-
-    phoneIcon1.addEventListener("mouseover", jump1);
-
-    var phoneIcon2 = document.createElement("div");
-    phoneIcon2.style.background = "url(https://www.example.png) no-repeat center/cover";
-    phoneIcon2.style.width = "50px";
-    phoneIcon2.style.height = "50px";
-    phoneIcon2.style.borderRadius = "50%";
-    phoneIcon2.style.backgroundColor = "white";
-    phoneIcon2.style.position = "fixed";
-    phoneIcon2.style.bottom = "20px";
-    phoneIcon2.style.left = "50%";
-    phoneIcon2.style.transform = "translateX(-25%)";
-    phoneIcon2.style.cursor = "pointer";
-    phoneIcon2.style.zIndex = "9999";
-    document.body.appendChild(phoneIcon2);
-
-    function openTelegram() {
-      window.open('https://t.me/*****?text=Привет!%20У%20меня%20вопрос%20по%20*****.', '_blank');
-    }
-
-    phoneIcon2.addEventListener("click", openTelegram);
-
-    var isJumping2 = false;
-    var jumpInterval2;
-
-    function jump2() {
-      if (!isJumping2) {
-        isJumping2 = true;
-        var initialBottom = parseInt(phoneIcon2.style.bottom);
-        jumpInterval2 = setInterval(function() {
-          phoneIcon2.style.bottom = parseInt(phoneIcon2.style.bottom) + 10 + "px";
-          setTimeout(function() {
-            phoneIcon2.style.bottom = initialBottom + "px";
-            isJumping2 = false;
-          }, 300);
-        }, 600);
-      }
-    }
-
-    phoneIcon2.addEventListener("mouseover", jump2);
+window.addEventListener("scroll", () => {
+  if (window.pageYOffset > 200) {
+    scrollButton.classList.add("show");
+  } else {
+    scrollButton.classList.remove("show");
   }
+});
+
+scrollButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  const randomColor = getRandomColor();
+  body.style.backgroundColor = randomColor;
+  set3DText(randomColor);
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+});
+
+navLinks.forEach((link) => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    const randomColor = getRandomColor();
+    body.style.backgroundColor = randomColor;
+    set3DText(randomColor);
+    const href = link.getAttribute("href");
+    document.querySelector(href).scrollIntoView({
+      behavior: "smooth",
+    });
+  });
+});
+
+function getRandomColor() {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+const text =
+  "Мы работаем по всей Тульской области, возможен выезд в другие регионы!...";
+const typingText = document.getElementById("typing-text");
+let charIndex = 0;
+let isDeleting = false;
+
+function typeWriter() {
+  const currentText = isDeleting
+    ? text.substring(0, charIndex - 1)
+    : text.substring(0, charIndex + 1);
+  typingText.textContent = currentText;
+
+  if (!isDeleting) {
+    charIndex++;
+    if (charIndex > text.length) {
+      isDeleting = true;
+      charIndex = text.length;
+    }
+  } else {
+    charIndex--;
+    if (charIndex === 0) {
+      isDeleting = false;
+    }
+  }
+}
+
+setInterval(typeWriter, 100);
+
+const nextButtons = document.querySelectorAll('.next-button');
+nextButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const targetId = button.getAttribute('data-target');
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      const randomColor = getRandomColor();
+      body.style.backgroundColor = randomColor;
+      set3DText(randomColor);
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+
+function set3DText(color) {
+  const sectionHeadings = document.querySelectorAll("section:not(.header-section) h2");
+  const bodyColor = getContrastColor(color); // Получение цвета контрастного фона
+
+  sectionHeadings.forEach((heading) => {
+    if (heading.textContent !== "Камин-шабашка") {
+      heading.style.textShadow = `2px 2px 4px rgba(0, 0, 0, 0.4), 2px 2px 6px ${color}`;
+      heading.style.color = bodyColor; // Использование цвета контрастного фона
+    }
+  });
+
+  body.style.color = bodyColor; // Изменение цвета текста в основном содержимом страницы
+}
+
+function getContrastColor(color) {
+  const rgb = hexToRgb(color);
+  const brightness = (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000;
+  return brightness >= 128 ? "#000" : "#FFF";
+}
+
+function hexToRgb(hex) {
+  const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+  hex = hex.replace(shorthandRegex, (m, r, g, b) => {
+    return r + r + g + g + b + b;
+  });
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
+    : null;
+}
+
+window.addEventListener("scroll", () => {
+  const windowHeight = window.innerHeight;
+  const scrollPosition = window.pageYOffset;
+
+  sections.forEach((section, index) => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+
+    if (scrollPosition >= sectionTop - windowHeight + sectionHeight * 0.5) {
+      section.classList.add(index % 2 === 0 ? "from-right" : "from-left");
+    } else {
+      section.classList.remove("from-right", "from-left");
+    }
+  });
+
+  if (window.pageYOffset > 200) {
+    scrollButton.classList.add("show");
+  } else {
+    scrollButton.classList.remove("show");
+  }
+});
+
+  function generateRandomCaptcha() {
+    var min = 10000;
+    var max = 99999;
+    var captcha = Math.floor(Math.random() * (max - min + 1)) + min;
+    return captcha;
+  }
+
+  function generateCaptcha() {
+    var captcha = generateRandomCaptcha();
+    var captchaContainer = document.getElementById("captchaContainer");
+    captchaContainer.innerHTML = captcha;
+  }
+
+  function verifyNotARobot() {
+    var userInput = document.getElementById("captchaInput").value;
+    var captcha = parseInt(document.getElementById("captchaContainer").innerHTML);
+
+    if (userInput === captcha.toString()) {
+      alert("Проверка пройдена!");
+      closeModal();
+      localStorage.setItem("captchaVerified", "true");
+    } else {
+      alert("Проверка не пройдена!");
+    }
+  }
+
+  function openModal() {
+    var modal = document.getElementById("modal");
+    modal.style.display = "block";
+  }
+
+  function closeModal() {
+    var modal = document.getElementById("modal");
+    modal.style.display = "none";
+  }
+
+  window.onload = function () {
+    var captchaVerified = localStorage.getItem("captchaVerified");
+
+    if (!captchaVerified) {
+      generateCaptcha();
+      openModal();
+    }
+
+    var verifyBtn = document.getElementById("verifyBtn");
+    verifyBtn.addEventListener("click", verifyNotARobot);
+  };

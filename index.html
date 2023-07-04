@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Камин-шабашка</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <!-- Заголовок и навигационное меню -->
+      <h1>Камин-шабашка</h1>
+      <nav>
+        <ul>
+          <li><a href="#section1">О нас</a></li>
+          <li><a href="#section2">Услуги</a></li>
+          <li><a href="#section3">Преимущества</a></li>
+          <li><a href="#section4">Контакты</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="section1" class="animate-section">
+        <!-- Контент раздела "О нас" -->
+        <div class="about-container">
+          <h2>О нас</h2>
+          <p>
+            Наша компания специализируется на оказании разовых услуг по
+            установке печей и каминов. Мы гордимся нашей командой
+            профессиональных мастеров, которые обладают большим опытом и
+            навыками в этой области. Наша команда состоит преимущественно из
+            мастеров, которые проявляют высокую мотивацию и преданность своей
+            работе. НЕ ИЩИТЕ ДЕШЕВЛЕ - ДЕШЕВЛЕ ПРОСТО НЕ БЫВАЕТ!
+          </p>
+          <div class="photo-container">
+            <img
+              class="modern-photo"
+              src="https://cdn.glitch.global/1c9d4d39-b248-4b4d-9d71-42e9f7bbebe5/58.jpeg?v=1688294014697"
+              alt="Фото 1"
+            />
+          </div>
+        </div>
+        <button class="next-button" data-target="#section2">ДАЛЕЕ</button>
+      </section>
+      
+
+      <section id="section2" class="animate-section">
+        <!-- Контент раздела "Услуги" -->
+        <h2>Услуги</h2>
+        <ul>
+          <li>Монтаж каминов</li>
+          <li>Монтаж отопительных печей</li>
+          <li>Монтаж отопительных котлов</li>
+          <li>Монтаж банных печей</li>
+          <li>Отделка бань и саун</li>
+        </ul>
+        <div class="photo-container">
+          <img
+            class="modern-photo"
+            src="https://cdn.glitch.global/1c9d4d39-b248-4b4d-9d71-42e9f7bbebe5/06.jpeg?v=1688306419193"
+            alt="Фото 2"
+          />
+        </div>
+        <button class="next-button" data-target="#section3">ДАЛЕЕ</button>
+      </section>
+
+      <section id="section3" class="animate-section">
+        <!-- Контент раздела "Преимущества" -->
+        <h2>Преимущества</h2>
+        <ul>
+          <li>Профессиональные мастера с опытом</li>
+          <li>Доступные цены</li>
+          <li>Высокое качество работы</li>
+          <li>Пунктуальность и надежность</li>
+        </ul>
+        <div class="photo-container">
+            <img
+              class="modern-photo"
+              src="https://cdn.glitch.global/1c9d4d39-b248-4b4d-9d71-42e9f7bbebe5/57.jpeg?v=1688294004258"
+              alt="Фото 3"
+            />
+          </div>
+        <button class="next-button" data-target="#section4">ДАЛЕЕ</button>
+      </section>
+
+      <section id="section4" class="animate-section">
+        <!-- Контактная информация -->
+        <h2>Контакты</h2>
+        <div id="typing-container">
+    <span id="typing-text"></span>
+  </div>
+      </section>
+    </main>
+
+    <footer>
+      <!-- Подвал сайта -->
+      <p>© 2023 Все права защищены</p>
+    </footer>
+
+    <div class="scroll-to-top">&#8593;</div>
+    <div id="modal" class="modal-overlay">
+  <div class="modal-content">
+    <h2>Чтобы подтвердить, что Вы не робот, пожалуйста введите отображаемое число</h2>
+    <div id="captchaContainer"></div>
+    <input type="text" id="captchaInput" placeholder="Введите значение CAPTCHA" />
+    <button id="verifyBtn">Проверить</button>
+  </div>
+      
+</div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
